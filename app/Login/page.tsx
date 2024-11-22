@@ -1,6 +1,50 @@
 import React from 'react';
+"use client"
+
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 const Login: React.FC = () => {
+
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('pass', pass);
+
+      const response = await fetch('http://www.webkazer.somee.com/api/User/Login', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        Cookies.set('Token', data.userTypeId);
+        console.log(data)
+
+        alert("Validación exitosa");
+        router.push("/Accounts");
+        
+      } else if (response.status === 404) {
+        alert('Incorrect username or password.');
+      } else if (response.status === 400) {
+        alert('Username or password cannot be empty.');
+      } else {
+        alert('An error has occurred.');
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+
   return (
     <main style={styles.main}>
       <div style={styles.container}>
@@ -9,6 +53,9 @@ const Login: React.FC = () => {
         <form>
           <input type="text" placeholder="Nombre de usuario" required style={styles.input} />
           <input type="password" placeholder="Contraseña" required style={styles.input} />
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Nombre de usuario" value={email} onChange={(e) => setEmail(e.target.value)} required style={styles.input} />
+          <input type="password" placeholder="Contraseña" value={pass} onChange={(e) => setPass(e.target.value)} required style={styles.input} />
           <button type="submit" style={styles.button}>Iniciar Sesión</button>
         </form>
       </div>
