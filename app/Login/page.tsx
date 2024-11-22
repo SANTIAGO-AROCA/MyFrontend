@@ -18,7 +18,7 @@ const Login: React.FC = () => {
       formData.append('email', email);
       formData.append('pass', pass);
 
-      const response = await fetch('http://www.webkazer.somee.com/api/User/Login', {
+      const response = await fetch('https://www.webkazer.somee.com/api/User/Login', {
         method: 'POST',
         body: formData,
       });

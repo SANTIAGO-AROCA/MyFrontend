@@ -56,7 +56,7 @@ const Register: React.FC = () => {
         isDeleted: false
       };
  
-      const response = await fetch("http://www.webkazer.somee.com/api/User", {
+      const response = await fetch("https://www.webkazer.somee.com/api/User", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
