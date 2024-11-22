@@ -1,20 +1,10 @@
 "use client";
-
-<<<<<<< HEAD
-=======
-//import { error } from 'console';
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
+ 
 import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
-
+ 
 const Register: React.FC = () => {
   const router = useRouter();
-<<<<<<< HEAD
-=======
-import React, { useState } from "react";
-
-const Register: React.FC = () => {
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,22 +14,15 @@ const Register: React.FC = () => {
     phone: "",
     acceptTerms: false,
     stateId: "", // Tipo de cuenta
-<<<<<<< HEAD
-=======
-    address: "",
-    phone: "",
-    acceptTerms: false,
-    accountType: "", // Tipo de cuenta
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
   });
-
+ 
   const [errors, setErrors] = useState<Record<string, string>>({});
-
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
-
+ 
   const validateFields = (): boolean => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) newErrors.name = "El nombre es obligatorio";
@@ -50,24 +33,17 @@ const Register: React.FC = () => {
     if (!formData.phone.trim()) newErrors.phone = "El teléfono es obligatorio";
     if (!formData.acceptTerms) newErrors.acceptTerms = "Debes aceptar el tratamiento de datos";
     if (!formData.stateId) newErrors.accountType = "Debes seleccionar un tipo de cuenta";
-<<<<<<< HEAD
-=======
-    if (!formData.address.trim()) newErrors.address = "La dirección es obligatoria";
-    if (!formData.phone.trim()) newErrors.phone = "El teléfono es obligatorio";
-    if (!formData.acceptTerms) newErrors.acceptTerms = "Debes aceptar el tratamiento de datos";
-    if (!formData.accountType) newErrors.accountType = "Debes seleccionar un tipo de cuenta";
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+ 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateFields()) return;
-
+ 
     try {
       setErrors({});
-
+ 
       const formApi = {
         name: formData.name,
         email: formData.email,
@@ -79,7 +55,7 @@ const Register: React.FC = () => {
         userId: formData.stateId === "Cliente" ? 2 : 3,
         isDeleted: false
       };
-
+ 
       const response = await fetch("http://www.webkazer.somee.com/api/User", {
         method: "POST",
         headers: {
@@ -87,34 +63,24 @@ const Register: React.FC = () => {
         },
         body: JSON.stringify(formApi),
       });
-
+ 
       console.log(formApi)
-
+ 
       if (!response.ok) {
         const errorData = await response.json();
-
+ 
         console.error("Error del servidor:", errorData);
         setErrors({ general: errorData.message || "Error al registrar el usuario" });
         return;
       }
-
+ 
       alert("Registro exitoso. ¡Bienvenido!");
       router.push("/Login");
     } catch (error) {
-<<<<<<< HEAD
-      setErrors({ general: "Hubo un problema al conectar con el servidor. Intenta más tarde." });
-=======
-      console.log("error:",error)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (validateFields()) {
-      console.log("Formulario enviado:", formData);
-      alert("Registro exitoso");
-      // Aquí puedes agregar la lógica para enviar los datos al servidor
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
+      console.log(error)
     }
   };
-
+ 
   return (
     <div style={containerStyle}>
       <div style={formContainerStyle}>
@@ -129,7 +95,7 @@ const Register: React.FC = () => {
             style={inputStyle}
           />
           {errors.name && <p style={errorStyle}>{errors.name}</p>}
-
+ 
           <input
             type="email"
             name="email"
@@ -139,7 +105,7 @@ const Register: React.FC = () => {
             style={inputStyle}
           />
           {errors.email && <p style={errorStyle}>{errors.email}</p>}
-
+ 
           <input
             type="password"
             name="password"
@@ -149,7 +115,7 @@ const Register: React.FC = () => {
             style={inputStyle}
           />
           {errors.password && <p style={errorStyle}>{errors.password}</p>}
-
+ 
           <input
             type="text"
             name="city"
@@ -159,23 +125,17 @@ const Register: React.FC = () => {
             style={inputStyle}
           />
           {errors.city && <p style={errorStyle}>{errors.city}</p>}
-
+ 
           <input
             type="text"
             name="addres"
             placeholder="Dirección"
             value={formData.addres}
-<<<<<<< HEAD
-=======
-            name="address"
-            placeholder="Dirección"
-            value={formData.address}
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
             onChange={handleChange}
             style={inputStyle}
           />
           {errors.address && <p style={errorStyle}>{errors.address}</p>}
-
+ 
           <input
             type="text"
             name="phone"
@@ -185,7 +145,7 @@ const Register: React.FC = () => {
             style={inputStyle}
           />
           {errors.phone && <p style={errorStyle}>{errors.phone}</p>}
-
+ 
           {/* Tipo de cuenta */}
           <div style={accountTypeStyle}>
             <label>
@@ -194,12 +154,6 @@ const Register: React.FC = () => {
                 name="stateId"
                 value="Cliente"
                 checked={formData.stateId === "Cliente"}
-<<<<<<< HEAD
-=======
-                name="accountType"
-                value="Cliente"
-                checked={formData.accountType === "Cliente"}
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
                 onChange={handleChange}
               />
               Cliente
@@ -210,19 +164,13 @@ const Register: React.FC = () => {
                 name="stateId"
                 value="Vendedor"
                 checked={formData.stateId === "Vendedor"}
-<<<<<<< HEAD
-=======
-                name="accountType"
-                value="Vendedor"
-                checked={formData.accountType === "Vendedor"}
->>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
                 onChange={handleChange}
               />
               Vendedor
             </label>
           </div>
           {errors.accountType && <p style={errorStyle}>{errors.accountType}</p>}
-
+ 
           {/* Tratamiento de datos */}
           <div style={termsStyle}>
             <input
@@ -238,19 +186,19 @@ const Register: React.FC = () => {
             </label>
           </div>
           {errors.acceptTerms && <p style={errorStyle}>{errors.acceptTerms}</p>}
-
+ 
           <button type="submit" style={buttonStyle}>
             Registrar
           </button>
-
+ 
           {typeof errors === "string" && <p style={errorStyle}>{errors}</p>}
-
+ 
         </form>
       </div>
     </div>
   );
 };
-
+ 
 // Estilos definidos
 const containerStyle = {
   display: "flex",
@@ -261,7 +209,7 @@ const containerStyle = {
   backgroundSize: "cover",
   backgroundPosition: "center",
 };
-
+ 
 const formContainerStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.8)",
   padding: "20px",
@@ -270,14 +218,14 @@ const formContainerStyle = {
   maxWidth: "400px",
   width: "100%",
 };
-
+ 
 const headerStyle = {
   textAlign: "center" as const,
   marginBottom: "20px",
   color: "#333",
   fontSize: "24px",
 };
-
+ 
 const inputStyle = {
   width: "100%",
   padding: "10px",
@@ -286,13 +234,13 @@ const inputStyle = {
   borderRadius: "4px",
   fontSize: "16px",
 };
-
+ 
 const accountTypeStyle = {
   marginBottom: "15px",
   display: "flex",
   justifyContent: "space-between",
 };
-
+ 
 const buttonStyle = {
   width: "100%",
   padding: "10px",
@@ -303,23 +251,23 @@ const buttonStyle = {
   cursor: "pointer",
   fontSize: "16px",
 };
-
+ 
 const errorStyle = {
   color: "red",
   fontSize: "12px",
   marginBottom: "10px",
 };
-
+ 
 const termsStyle = {
   marginBottom: "10px",
   display: "flex",
   alignItems: "center",
 };
-
+ 
 const termsLabelStyle = {
   marginLeft: "10px",
   fontSize: "14px",
   color: "#333",
 };
-
+ 
 export default Register;
