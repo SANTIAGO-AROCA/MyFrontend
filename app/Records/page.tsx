@@ -1,10 +1,20 @@
 "use client";
 
+<<<<<<< HEAD
+=======
+//import { error } from 'console';
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
 import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
 
 const Register: React.FC = () => {
   const router = useRouter();
+<<<<<<< HEAD
+=======
+import React, { useState } from "react";
+
+const Register: React.FC = () => {
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,6 +24,13 @@ const Register: React.FC = () => {
     phone: "",
     acceptTerms: false,
     stateId: "", // Tipo de cuenta
+<<<<<<< HEAD
+=======
+    address: "",
+    phone: "",
+    acceptTerms: false,
+    accountType: "", // Tipo de cuenta
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -33,6 +50,13 @@ const Register: React.FC = () => {
     if (!formData.phone.trim()) newErrors.phone = "El teléfono es obligatorio";
     if (!formData.acceptTerms) newErrors.acceptTerms = "Debes aceptar el tratamiento de datos";
     if (!formData.stateId) newErrors.accountType = "Debes seleccionar un tipo de cuenta";
+<<<<<<< HEAD
+=======
+    if (!formData.address.trim()) newErrors.address = "La dirección es obligatoria";
+    if (!formData.phone.trim()) newErrors.phone = "El teléfono es obligatorio";
+    if (!formData.acceptTerms) newErrors.acceptTerms = "Debes aceptar el tratamiento de datos";
+    if (!formData.accountType) newErrors.accountType = "Debes seleccionar un tipo de cuenta";
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -77,7 +101,17 @@ const Register: React.FC = () => {
       alert("Registro exitoso. ¡Bienvenido!");
       router.push("/Login");
     } catch (error) {
+<<<<<<< HEAD
       setErrors({ general: "Hubo un problema al conectar con el servidor. Intenta más tarde." });
+=======
+      console.log("error:",error)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validateFields()) {
+      console.log("Formulario enviado:", formData);
+      alert("Registro exitoso");
+      // Aquí puedes agregar la lógica para enviar los datos al servidor
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
     }
   };
 
@@ -131,6 +165,12 @@ const Register: React.FC = () => {
             name="addres"
             placeholder="Dirección"
             value={formData.addres}
+<<<<<<< HEAD
+=======
+            name="address"
+            placeholder="Dirección"
+            value={formData.address}
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
             onChange={handleChange}
             style={inputStyle}
           />
@@ -154,6 +194,12 @@ const Register: React.FC = () => {
                 name="stateId"
                 value="Cliente"
                 checked={formData.stateId === "Cliente"}
+<<<<<<< HEAD
+=======
+                name="accountType"
+                value="Cliente"
+                checked={formData.accountType === "Cliente"}
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
                 onChange={handleChange}
               />
               Cliente
@@ -164,6 +210,12 @@ const Register: React.FC = () => {
                 name="stateId"
                 value="Vendedor"
                 checked={formData.stateId === "Vendedor"}
+<<<<<<< HEAD
+=======
+                name="accountType"
+                value="Vendedor"
+                checked={formData.accountType === "Vendedor"}
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
                 onChange={handleChange}
               />
               Vendedor

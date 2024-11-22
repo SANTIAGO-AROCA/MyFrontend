@@ -12,9 +12,18 @@
     "js-cookie": "^3.0.5",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
+<<<<<<< HEAD
     "react-dom": "19.0.0-rc-02c0e824-20241028"
   },
   "devDependencies": {
+=======
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "next": "15.0.2"
+    "react-dom": "19.0.0-rc-02c0e824-20241028"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -23,6 +32,11 @@
     "eslint-config-next": "15.0.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+<<<<<<< HEAD
+=======
+    "eslint": "^8",
+    "eslint-config-next": "15.0.2"
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
     "typescript": "^5"
   }
 }

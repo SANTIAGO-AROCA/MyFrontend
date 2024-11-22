@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
 "use client"
 
 import { useRouter } from 'next/navigation';
@@ -49,6 +53,12 @@ const Login: React.FC = () => {
       <div style={styles.container}>
         <h1 style={{ textAlign: 'center', marginBottom: '20px', color: 'white' }}>UNIVERSIDAD DE CUNDINAMARCA</h1>
         <h1 style={{ textAlign: 'center', marginBottom: '20px', color: 'white' }}>Inicio de Sesión</h1>
+<<<<<<< HEAD
+=======
+        <form>
+          <input type="text" placeholder="Nombre de usuario" required style={styles.input} />
+          <input type="password" placeholder="Contraseña" required style={styles.input} />
+>>>>>>> 85b4926b922de90d171f0f3769e37717eea952ef
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Nombre de usuario" value={email} onChange={(e) => setEmail(e.target.value)} required style={styles.input} />
           <input type="password" placeholder="Contraseña" value={pass} onChange={(e) => setPass(e.target.value)} required style={styles.input} />
