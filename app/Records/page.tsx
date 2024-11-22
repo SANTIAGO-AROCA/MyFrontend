@@ -6,6 +6,9 @@ import React, { useState } from "react";
 
 const Register: React.FC = () => {
   const router = useRouter();
+import React, { useState } from "react";
+
+const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +18,10 @@ const Register: React.FC = () => {
     phone: "",
     acceptTerms: false,
     stateId: "", // Tipo de cuenta
+    address: "",
+    phone: "",
+    acceptTerms: false,
+    accountType: "", // Tipo de cuenta
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -34,6 +41,10 @@ const Register: React.FC = () => {
     if (!formData.phone.trim()) newErrors.phone = "El teléfono es obligatorio";
     if (!formData.acceptTerms) newErrors.acceptTerms = "Debes aceptar el tratamiento de datos";
     if (!formData.stateId) newErrors.accountType = "Debes seleccionar un tipo de cuenta";
+    if (!formData.address.trim()) newErrors.address = "La dirección es obligatoria";
+    if (!formData.phone.trim()) newErrors.phone = "El teléfono es obligatorio";
+    if (!formData.acceptTerms) newErrors.acceptTerms = "Debes aceptar el tratamiento de datos";
+    if (!formData.accountType) newErrors.accountType = "Debes seleccionar un tipo de cuenta";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -79,6 +90,12 @@ const Register: React.FC = () => {
       router.push("/Login");
     } catch (error) {
       console.log("error:",error)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validateFields()) {
+      console.log("Formulario enviado:", formData);
+      alert("Registro exitoso");
+      // Aquí puedes agregar la lógica para enviar los datos al servidor
     }
   };
 
@@ -132,6 +149,9 @@ const Register: React.FC = () => {
             name="addres"
             placeholder="Dirección"
             value={formData.addres}
+            name="address"
+            placeholder="Dirección"
+            value={formData.address}
             onChange={handleChange}
             style={inputStyle}
           />
@@ -155,6 +175,9 @@ const Register: React.FC = () => {
                 name="stateId"
                 value="Cliente"
                 checked={formData.stateId === "Cliente"}
+                name="accountType"
+                value="Cliente"
+                checked={formData.accountType === "Cliente"}
                 onChange={handleChange}
               />
               Cliente
@@ -165,6 +188,9 @@ const Register: React.FC = () => {
                 name="stateId"
                 value="Vendedor"
                 checked={formData.stateId === "Vendedor"}
+                name="accountType"
+                value="Vendedor"
+                checked={formData.accountType === "Vendedor"}
                 onChange={handleChange}
               />
               Vendedor
